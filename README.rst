@@ -33,6 +33,18 @@ Report will be available in::
    build/reports/tests/test/index.html
 
 
+Building documentation
+======================
+
+Build reference documentation::
+
+   gradle doc
+
+Generated documentation will be available in::
+
+   build/docs/javadoc/
+
+
 License
 =======
 
