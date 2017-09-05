@@ -1,6 +1,8 @@
+
 .gradle/*
 gradle/*
 gradlew
 gradlew.bat
+gradle.properties
 
 build/*
