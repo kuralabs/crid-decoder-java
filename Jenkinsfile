@@ -10,6 +10,7 @@ pipeline {
                     gradle test
                     gradle doc
                 '''
+                stash name: 'libs', includes: 'build/libs/crid-decoder-*.jar'
                 stash name: 'docs', includes: 'build/docs/javadoc/**/*'
             }
         }
@@ -20,10 +21,27 @@ pipeline {
             steps {
                 unstash 'docs'
                 sh '''
+                    DEPLOY_DIR=/deploy/docs/crid-decoder
                     umask 022
-                    mkdir -p /deploy/docs/crid-decoder
-                    rm -rf /deploy/docs/crid-decoder/*
-                    cp -R build/docs/javadoc/* /deploy/docs/crid-decoder/
+
+                    mkdir -p "${DEPLOY_DIR}"
+                    rm -rf "${DEPLOY_DIR}"/*
+                    cp -R build/docs/javadoc/* "${DEPLOY_DIR}"
+                '''
+
+                unstash 'libs'
+                sh '''
+                    DEPLOY_DIR=/deploy/archive/crid-decoder
+                    umask 022
+
+                    mkdir -p "${DEPLOY_DIR}"
+                    if git describe --exact-match HEAD; then
+                        echo "In release!"
+                        cp build/libs/crid-decoder-*.jar "${DEPLOY_DIR}"
+                    else
+                        echo "Not in release!"
+                        cp build/libs/crid-decoder-*.jar "${DEPLOY_DIR}/crid-decoder-dev.jar"
+                    fi
                 '''
             }
         }
