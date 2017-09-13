@@ -22,8 +22,8 @@ pipeline {
                 unstash 'docs'
                 sh '''
                     DEPLOY_DIR=/deploy/docs/crid-decoder
-                    umask 022
 
+                    umask 022
                     mkdir -p "${DEPLOY_DIR}"
                     rm -rf "${DEPLOY_DIR}"/*
                     cp -R build/docs/javadoc/* "${DEPLOY_DIR}"
@@ -32,16 +32,18 @@ pipeline {
                 unstash 'libs'
                 sh '''
                     DEPLOY_DIR=/deploy/archive/crid-decoder
-                    umask 022
+                    ARTIFACT=$(ls build/libs/crid-decoder-*.jar)
 
-                    mkdir -p "${DEPLOY_DIR}"
                     if git describe --exact-match HEAD; then
-                        echo "In release!"
-                        cp build/libs/crid-decoder-*.jar "${DEPLOY_DIR}"
+                        PUBLISH=$(basename "${ARTIFACT}")
                     else
-                        echo "Not in release!"
-                        cp build/libs/crid-decoder-*.jar "${DEPLOY_DIR}/crid-decoder-dev.jar"
+                        PUBLISH="crid-decoder-dev.jar"
                     fi
+
+                    umask 022
+                    mkdir -p "${DEPLOY_DIR}"
+                    cp "${ARTIFACT}" "${DEPLOY_DIR}/${PUBLISH}"
+                    sha256sum "${DEPLOY_DIR}/${PUBLISH}" > "${DEPLOY_DIR}/${PUBLISH}.sha256"
                 '''
             }
         }
