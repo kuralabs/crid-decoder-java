@@ -34,7 +34,7 @@ pipeline {
                     DEPLOY_DIR=/deploy/archive/crid-decoder
                     ARTIFACT=$(ls build/libs/crid-decoder-*.jar)
 
-                    if git describe --exact-match HEAD; then
+                    if git describe --tags --exact-match HEAD; then
                         PUBLISH=$(basename "${ARTIFACT}")
                     else
                         PUBLISH="crid-decoder-dev.jar"
