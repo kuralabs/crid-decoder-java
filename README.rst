@@ -8,6 +8,51 @@ crid-decoder
 
 Decoder for PDF417 data from Costa Rican id cards.
 
+    https://docs.kuralabs.io/crid-decoder/
+
+Usage
+=====
+
+Import decoder and result object:
+
+.. code-block:: java
+
+   import io.kuralabs.crid.decoder.IdDecoder;
+   import io.kuralabs.crid.decoder.Person;
+
+.. code-block:: java
+
+   // byte[] decodingKey = new byte[] {(byte)0x00, ...};
+   IdDecoder decoder = new IdDecoder(decodingKey);
+   Person person = decoder.decode(scanResult);
+   // Person.getId(); Person.getName(); ...
+
+Android
+-------
+
+Include the jitpack_ repository in your global ``build.gradle``:
+
+.. _jitpack: https://jitpack.io
+
+.. code-block:: txt
+
+   allprojects {
+       repositories {
+           jcenter()
+           maven { url "https://jitpack.io" }
+       }
+   }
+
+Add the following dependency to your app ``build.gradle``:
+
+.. code-block:: txt
+
+   dependencies {
+       // ...
+       // CRID Decoder
+       compile 'io.kuralabs:crid-decoder:0.1.0'
+   }
+
 
 Compiling the library
 =====================

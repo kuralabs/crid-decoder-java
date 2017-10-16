@@ -9,7 +9,7 @@
 apply plugin: 'java'
 
 // Project version
-version = '0.1.0'
+version = '0.2.0'
 
 // JVM target version
 sourceCompatibility = 1.8
@@ -38,5 +38,5 @@ jar {
 
 // Documentation settings
 task doc(type: Javadoc) {
-  source = sourceSets.main.allJava
+    source = sourceSets.main.allJava
 }
