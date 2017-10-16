@@ -33,7 +33,9 @@ public class StringUtils {
                 continue;
             }
 
-            capitalizedWords[wordIdx] = word.toUpperCase().charAt(0) + word.substring(1);
+            capitalizedWords[wordIdx] =
+                word.toUpperCase().charAt(0) +
+                word.substring(1).toLowerCase();
         }
 
         return StringUtils.join(capitalizedWords, " ");
