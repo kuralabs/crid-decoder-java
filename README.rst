@@ -2,6 +2,10 @@
 crid-decoder
 ============
 
+.. image:: https://build.kuralabs.io/buildStatus/icon?job=GitHub/crid-decoder/master
+   :target: https://build.kuralabs.io/job/GitHub/job/crid-decoder/job/master/
+   :alt: Build status
+
 Decoder for PDF417 data from Costa Rican id cards.
 
 

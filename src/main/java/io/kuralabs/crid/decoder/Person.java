@@ -32,7 +32,6 @@ public class Person {
         this.gender = gender;
         this.birthDate = birthDate;
         this.expirationDate = expirationDate;
-
     }
 
     public String getId() {

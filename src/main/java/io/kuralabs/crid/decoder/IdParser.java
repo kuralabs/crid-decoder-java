@@ -32,12 +32,18 @@ public class IdParser {
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
 
     public static Person parse(String decoded) throws ParseException {
-        String id = StringUtils.capitalize(
-            decoded.substring(
-                IdParser.id.begin,
-                IdParser.id.end
-            ).trim()
-        );
+
+        if (decoded == null || decoded.length() < expirationDate.end) {
+            throw new ParseException(
+                "Input of incorrect size",
+                expirationDate.end
+            );
+        }
+
+        String id = decoded.substring(
+            IdParser.id.begin,
+            IdParser.id.end
+        ).trim();
 
         String familyName1 = StringUtils.capitalize(
             decoded.substring(
@@ -75,6 +81,9 @@ public class IdParser {
             IdParser.expirationDate.end
         ));
 
-        return new Person(id, familyName1, familyName2, name, gender, birthDate, expirationDate);
+        return new Person(
+            id, familyName1, familyName2, name, gender,
+            birthDate, expirationDate
+        );
     }
 }
