@@ -1,12 +1,13 @@
 package io.kuralabs.crid.decoder;
 
 import java.util.Date;
+import java.io.Serializable;
 
 /**
  * Created by KuraLabs S.R.L on 2/19/17.
  */
 
-public class Person {
+public class Person implements Serializable {
 
     private String id;
     private String familyName1;
