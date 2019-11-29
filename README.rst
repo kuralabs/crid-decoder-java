@@ -34,7 +34,7 @@ Include the jitpack_ repository in your global ``build.gradle``:
 
 .. _jitpack: https://jitpack.io
 
-.. code-block:: txt
+.. code-block:: groovy
 
    allprojects {
        repositories {
@@ -45,23 +45,19 @@ Include the jitpack_ repository in your global ``build.gradle``:
 
 Add the following dependency to your app ``build.gradle``:
 
-.. code-block:: txt
+.. code-block:: groovy
 
    dependencies {
        // ...
        // CRID Decoder
-       compile 'io.kuralabs:crid-decoder:0.1.0'
+       compile 'io.kuralabs:crid-decoder:0.2.1'
    }
 
 
 Compiling the library
 =====================
 
-First, install gradle and the wrapper at its version 3.3::
-
-   gradle wrapper --gradle-version 3.3
-
-Then, build jar archive::
+Build jar archive::
 
    gradle jar
 
@@ -99,7 +95,7 @@ License
 
 ::
 
-   Copyright (C) 2017 KuraLabs S.R.L
+   Copyright (C) 2017-2019 KuraLabs S.R.L
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
